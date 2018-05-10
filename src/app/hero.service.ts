@@ -42,7 +42,6 @@ export class HeroService {
       );
   }
  
-  
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
@@ -51,10 +50,8 @@ export class HeroService {
     );
   }
  
-
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {
-      
       return of([]);
     }
     return this.http.get<Hero[]>(`api/heroes/?name=${term}`).pipe(
@@ -63,7 +60,6 @@ export class HeroService {
     );
   }
  
-
   addHero (hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
       tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
@@ -71,7 +67,6 @@ export class HeroService {
     );
   }
  
-
   deleteHero (hero: Hero | number): Observable<Hero> {
     const id = typeof hero === 'number' ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
@@ -82,7 +77,6 @@ export class HeroService {
     );
   }
  
-
   updateHero (hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${hero.id}`)),

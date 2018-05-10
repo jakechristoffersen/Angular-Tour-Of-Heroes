@@ -8,13 +8,25 @@
     add
   </button>
 </div>
- 
-<ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-    </a>
-    <button class="delete" title="delete hero"
-    (click)="delete(hero)">x</button>
-  </li>
-</ul>
+<div class="list-group" *ngFor="let hero of heroes">
+  <!-- <ul class="heroes list-group">
+    <li  class="list-group-item d-flex justify-content-between align-items-center">
+      <a routerLink="/detail/{{hero.id}}">
+        <div class="badge">{{hero.id}}</div> {{hero.name}}
+        <span class="badge badge-primary badge-pill align-right" (click)="delete(hero)">x</span>
+      </a>
+      
+    </li>
+    
+  </ul> -->
+
+  <a routerLink="/detail/{{hero.id}}" class="heroes list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{hero.name}} </h5>
+      <small (click)="delete(hero)">Delete</small>
+    </div>
+    <p class="mb-1">{{hero.detail}}</p>
+    <small>{{hero.id}}</small>
+  </a>
+
+</div>
